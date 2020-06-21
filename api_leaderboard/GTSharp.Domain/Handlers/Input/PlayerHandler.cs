@@ -25,8 +25,8 @@ namespace GTSharp.Domain.Entities
             if (command.Invalid)
                 return new GenericCommandResult(false, "Algo deu errado", command.Notifications);
 
-            //Gera Todo
-            var player = new Player(command.NickName, command.Avatar, command.Country);
+            //Gera Player
+            var player = new Player(command.Email, command.Name, command.NickName, command.Avatar, command.Country);
 
             //Salva no banco
             _repository.Create(player);

@@ -52,13 +52,13 @@ namespace GTSharp.Domain.Api
               .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options =>
               {
-                  options.Authority = "https://securetoken.google.com/tsgames-66a6f";
+                  options.Authority = "https://securetoken.google.com/bsgames-a4fe0";
                   options.TokenValidationParameters = new TokenValidationParameters
                   {
                       ValidateIssuer = true,
-                      ValidIssuer = "https://securetoken.google.com/tsgames-66a6f",
+                      ValidIssuer = "https://securetoken.google.com/bsgames-a4fe0",
                       ValidateAudience = true,
-                      ValidAudience = "tsgames-66a6f",
+                      ValidAudience = "bsgames-a4fe0",
                       ValidateLifetime = true
                   };
               });
