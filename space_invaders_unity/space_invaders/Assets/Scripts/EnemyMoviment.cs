@@ -42,7 +42,6 @@ public class EnemyMoviment : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("coliiidiu");
         direction *= -1;       
     }
 }
