@@ -24,7 +24,7 @@ public class PlayerMoviment : MonoBehaviour {
         if(!isShootActive && Input.GetKeyDown(KeyCode.Space)) {
             isShootActive = true;
 
-            var goShoot = Instantiate(pfShoot, transform.position + new Vector3(0, .5f, 0), pfShoot.transform.rotation);
+            var goShoot = Instantiate(pfShoot, transform.position + new Vector3(0, .8f, 0), pfShoot.transform.rotation);
             var shoot = goShoot.GetComponent<Shoot>();
             shoot.Setup(5f, 1f, () => {
                 isShootActive = false;

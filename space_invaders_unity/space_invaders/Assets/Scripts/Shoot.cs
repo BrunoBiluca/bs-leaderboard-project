@@ -14,7 +14,6 @@ public class Shoot : MonoBehaviour {
         transform.position += new Vector3(0, shootDirection * shootSpeed * Time.deltaTime, 0);
 
         if(transform.position.y > 10f) {
-            onShootDestroy();
             Destroy(gameObject);
         }
     }
@@ -24,4 +23,18 @@ public class Shoot : MonoBehaviour {
         shootDirection = direction;
         this.onShootDestroy = onShootDestroy;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        var damageableSystem = other.GetComponent<IDamageable>();
+
+        if(damageableSystem != null) {
+            damageableSystem.Damage();
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy() {
+        onShootDestroy();
+    }
+
 }
