@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour {
 
     float shootSpeed;
     float shootDirection;
+    Type shootTarget;
 
     Action onShootDestroy;
 
@@ -14,13 +15,15 @@ public class Shoot : MonoBehaviour {
         transform.position += new Vector3(0, shootDirection * shootSpeed * Time.deltaTime, 0);
 
         if(transform.position.y > 10f) {
+            GameManager.i.gameScore.MissedShoot();
             Destroy(gameObject);
         }
     }
 
-    internal void Setup(float speed, float direction, Action onShootDestroy) {
+    internal void Setup<T>(float speed, float direction, Action onShootDestroy) where T : IDamageable {
         shootSpeed = speed;
         shootDirection = direction;
+        shootTarget = typeof(T);
         this.onShootDestroy = onShootDestroy;
     }
 
@@ -28,8 +31,10 @@ public class Shoot : MonoBehaviour {
         var damageableSystem = other.GetComponent<IDamageable>();
 
         if(damageableSystem != null) {
-            damageableSystem.Damage();
-            Destroy(gameObject);
+            if(damageableSystem.GetType() == shootTarget) {
+                damageableSystem.Damage();
+                Destroy(gameObject);
+            }
         }
     }
 

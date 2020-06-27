@@ -26,7 +26,7 @@ public class PlayerMoviment : MonoBehaviour {
 
             var goShoot = Instantiate(pfShoot, transform.position + new Vector3(0, .8f, 0), pfShoot.transform.rotation);
             var shoot = goShoot.GetComponent<Shoot>();
-            shoot.Setup(5f, 1f, () => {
+            shoot.Setup<Enemy>(5f, 1f, () => {
                 isShootActive = false;
             });
         }
