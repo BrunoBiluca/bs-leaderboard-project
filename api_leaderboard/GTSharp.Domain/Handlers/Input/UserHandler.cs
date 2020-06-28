@@ -8,31 +8,32 @@ using GTSharp.Domain.Resources;
 
 namespace GTSharp.Domain.Entities
 {
-    public class PlayerHandler :
+    public class UserHandler :
     Notifiable,
-    IHandler<CreatePlayerCommand>
+    IHandler<CreateUserCommand>
     {
-        private readonly IPlayerRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public PlayerHandler(IPlayerRepository repository)
+        public UserHandler(IUserRepository repository)
         {
             _repository = repository;
         }
 
-        public ICommandResult Handle(CreatePlayerCommand command)
+        public ICommandResult Handle(CreateUserCommand command)
         {
             //Fail Fast Validation
             command.Validate();
             if (command.Invalid)
                 return new GenericCommandResult(false, Messages.Ex_ExceptionGeneric, command.Notifications);
 
-            //Gera Player
-            var player = new Player(command.NickName, command.Avatar, command.Country, command.IdUser, command.IdGame);
-
+            //Gera User
+            var User = new User(command.Email, command.Name, command.Picture, command.NickName,
+            command.Avatar, command.Country);
             //Salva no banco
-            _repository.Create(player);
+            _repository.Create(User);
 
-            return new GenericCommandResult(true, Messages.Act_Save, player);
+            return new GenericCommandResult(true, Messages.Act_Save, User);
         }
+
     }
 }

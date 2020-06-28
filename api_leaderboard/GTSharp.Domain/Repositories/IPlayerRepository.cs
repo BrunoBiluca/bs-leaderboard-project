@@ -9,6 +9,5 @@ namespace GTSharp.Domain.Repositories
         Player GetById(Guid id);
         IEnumerable<Player> GetAll();
         void Create(Player player);
-
     }
 }

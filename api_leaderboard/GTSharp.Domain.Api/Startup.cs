@@ -45,6 +45,8 @@ namespace GTSharp.Domain.Api
 
             services.AddDbContext<DataContext>(o => o.UseInMemoryDatabase("Database"));
             //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<UserHandler, UserHandler>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<PlayerHandler, PlayerHandler>();
 
