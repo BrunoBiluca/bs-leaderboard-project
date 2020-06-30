@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GTSharp.Domain.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200629104918_InitialCreate")]
+    [Migration("20200630011524_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,10 @@ namespace GTSharp.Domain.Infra.Migrations
 
             modelBuilder.Entity("GTSharp.Domain.Entities.Game", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -47,9 +48,10 @@ namespace GTSharp.Domain.Infra.Migrations
 
             modelBuilder.Entity("GTSharp.Domain.Entities.Player", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
@@ -58,16 +60,16 @@ namespace GTSharp.Domain.Infra.Migrations
                         .HasColumnType("nvarchar(2)")
                         .HasMaxLength(2);
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
 
                     b.Property<string>("NickName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -78,15 +80,16 @@ namespace GTSharp.Domain.Infra.Migrations
 
             modelBuilder.Entity("GTSharp.Domain.Entities.Score", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("PlayerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("PlayerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ScoreJSON")
                         .HasColumnType("nvarchar(max)");
@@ -100,9 +103,10 @@ namespace GTSharp.Domain.Infra.Migrations
 
             modelBuilder.Entity("GTSharp.Domain.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");

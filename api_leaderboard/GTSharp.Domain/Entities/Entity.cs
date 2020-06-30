@@ -1,19 +1,13 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GTSharp.Domain.Entities
 {
-    public abstract class Entity : IEquatable<Entity>
+    public abstract class Entity
     {
-        public Guid Id { get; private set; }
+        [Key]
+        public int Id { get; private set; }
 
-        public Entity()
-        {
-            Id = Guid.NewGuid();
-        }
 
-        public bool Equals(Entity other)
-        {
-            return Id == other.Id;
-        }
     }
 }

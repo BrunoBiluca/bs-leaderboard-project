@@ -6,7 +6,7 @@ namespace GTSharp.Domain.Repositories
 {
     public interface IUserRepository
     {
-        User GetById(Guid id);
+        User GetById(int id);
         IEnumerable<User> GetAll();
         void Create(User user);
     }

@@ -6,7 +6,7 @@ namespace GTSharp.Domain.Queries
 {
     public static class PlayerQueries
     {
-        public static Expression<Func<Player, bool>> ExpById(Guid id)
+        public static Expression<Func<Player, bool>> ExpById(int id)
         {
             return o => o.Id == id;
         }

@@ -11,11 +11,11 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
         public string NickName { get; set; }
         public string Avatar { get; set; }
         public string Country { get; set; }
-        public Guid IdUser { get; set; }
-        public Guid IdGame { get; set; }
+        public int IdUser { get; set; }
+        public int IdGame { get; set; }
 
         public CreatePlayerCommand(string nickName, string avatar,
-         string country, Guid idUser, Guid idGame)
+         string country, int idUser, int idGame)
         {
             NickName = nickName;
             Avatar = avatar;
@@ -33,8 +33,8 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
             .HasLen(Country, 2, "Country", Messages.V_HasLen.ToFormat("Country", "2"))
 
             .IsNotNullOrEmpty(Avatar, "Avatar", Messages.V_IsNotNullOrEmpty.ToFormat("Avatar"))
-            .IsNotEmpty(IdUser, "IdUser", Messages.V_IsNotEmpty.ToFormat("IdUser"))
-            .IsNotEmpty(IdGame, "IdGame", Messages.V_IsNotEmpty.ToFormat("IdGame"))
+            .IsNotNull(IdUser, "IdUser", Messages.V_IsNotNullOrEmpty.ToFormat("IdUser"))
+            .IsNotNull(IdGame, "IdGame", Messages.V_IsNotNullOrEmpty.ToFormat("IdGame"))
             );
         }
     }

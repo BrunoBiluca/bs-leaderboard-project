@@ -27,9 +27,9 @@ namespace GTSharp.Domain.Api.Controllers
         }
 
 
-        [Route("{id:guid}")]
+        [Route("{id:int}")]
         [HttpGet]
-        public User GetById([FromServices] IUserRepository repository, Guid id)
+        public User GetById([FromServices] IUserRepository repository, int id)
         {
             return repository.GetById(id);
         }

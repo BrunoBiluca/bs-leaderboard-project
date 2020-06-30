@@ -18,7 +18,7 @@ namespace GTSharp.Domain.Infra.Repositories
             _context = context;
         }
 
-        public Game GetById(Guid id)
+        public Game GetById(int id)
         {
             return _context.Game.FirstOrDefault(GameQueries.ExpById(id));
         }

@@ -23,9 +23,9 @@ namespace GTSharp.Domain.Api.Controllers
             return (GenericCommandResult)handler.Handle(command);
         }
 
-        [Route("{id:guid}")]
+        [Route("{id:int}")]
         [HttpGet]
-        public Player GetById([FromServices] IPlayerRepository repository, Guid id)
+        public Player GetById([FromServices] IPlayerRepository repository, int id)
         {
             return repository.GetById(id);
         }

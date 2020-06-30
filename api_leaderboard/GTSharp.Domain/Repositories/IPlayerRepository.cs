@@ -6,7 +6,7 @@ namespace GTSharp.Domain.Repositories
 {
     public interface IPlayerRepository
     {
-        Player GetById(Guid id);
+        Player GetById(int id);
         IEnumerable<Player> GetAll();
         void Create(Player player);
     }

@@ -6,7 +6,7 @@ namespace GTSharp.Domain.Repositories
 {
     public interface IGameRepository
     {
-        Game GetById(Guid id);
+        Game GetById(int id);
         IEnumerable<Game> GetAll();
         void Create(Game game);
     }

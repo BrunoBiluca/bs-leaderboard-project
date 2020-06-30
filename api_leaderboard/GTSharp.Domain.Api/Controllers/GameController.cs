@@ -26,9 +26,9 @@ namespace GTSharp.Domain.Api.Controllers
         }
 
 
-        [Route("{id:guid}")]
+        [Route("{id:int}")]
         [HttpGet]
-        public Game GetById([FromServices] DataContext context, Guid id)
+        public Game GetById([FromServices] DataContext context, int id)
         {
             return context.Game.Where(o => o.Id == id).Include(o => o.Players).ToList().FirstOrDefault();
         }

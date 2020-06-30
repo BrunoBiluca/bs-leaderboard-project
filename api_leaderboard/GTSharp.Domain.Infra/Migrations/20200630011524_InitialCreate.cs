@@ -11,7 +11,8 @@ namespace GTSharp.Domain.Infra.Migrations
                 name: "Game",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
                     Genre = table.Column<string>(maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false)
@@ -25,7 +26,8 @@ namespace GTSharp.Domain.Infra.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     Picture = table.Column<string>(nullable: true),
@@ -42,12 +44,13 @@ namespace GTSharp.Domain.Infra.Migrations
                 name: "Player",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NickName = table.Column<string>(maxLength: 100, nullable: false),
                     Avatar = table.Column<string>(nullable: true),
                     Country = table.Column<string>(maxLength: 2, nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
-                    GameId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    GameId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,10 +67,11 @@ namespace GTSharp.Domain.Infra.Migrations
                 name: "Score",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ScoreJSON = table.Column<string>(nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: true),
-                    PlayerId = table.Column<Guid>(nullable: true)
+                    PlayerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
