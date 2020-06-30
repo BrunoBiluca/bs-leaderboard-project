@@ -30,14 +30,17 @@ namespace GTSharp.Domain.Api.Controllers
         [HttpGet]
         public Game GetById([FromServices] DataContext context, int id)
         {
-            return context.Game.Where(o => o.Id == id).Include(o => o.Players).ToList().FirstOrDefault();
+            return context.Game.AsNoTracking()
+            .Where(o => o.Id == id).Include(o => o.Players).ToList().FirstOrDefault();
         }
 
         [Route("all")]
         [HttpGet]
-        public IEnumerable<Game> GetAll([FromServices] IGameRepository repository)
+        public IEnumerable<Game> GetAll([FromServices] DataContext context)
         {
-            return repository.GetAll();
+            return context.Game.AsNoTracking()
+            .Include(o => o.Players)
+                .ThenInclude(p => p.Scores);
         }
     }
 }
