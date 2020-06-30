@@ -1,13 +1,11 @@
 using System.Linq;
 using GTSharp.Domain.Entities;
-using GTSharp.Domain.Handlers;
 using GTSharp.Domain.Infra.Contexts;
 using GTSharp.Domain.Infra.Repositories;
 using GTSharp.Domain.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 
 namespace GTSharp.Domain.Api
 {
@@ -43,12 +40,14 @@ namespace GTSharp.Domain.Api
 
             services.AddControllers();
 
-            services.AddDbContext<DataContext>(o => o.UseInMemoryDatabase("Database"));
-            //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            // services.AddDbContext<DataContext>(o => o.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<UserHandler, UserHandler>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<PlayerHandler, PlayerHandler>();
+            services.AddTransient<IGameRepository, GameRepository>();
+            services.AddTransient<GameHandler, GameHandler>();
 
             services
               .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

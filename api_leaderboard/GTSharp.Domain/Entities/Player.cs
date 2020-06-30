@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GTSharp.Domain.Entities
 {
@@ -17,18 +18,21 @@ namespace GTSharp.Domain.Entities
 
         public List<Score> Scores { get; private set; }
 
-        public Guid IdUser { get; private set; }
+        [ForeignKey("User")]
+        public Guid UserId { get; private set; }
 
-        public Guid IdGame { get; private set; }
+        [ForeignKey("Game")]
+        public Guid GameId { get; private set; }
 
+        public Player() { }
         public Player(string nickName, string avatar, string country, Guid idUser, Guid idGame)
         {
             NickName = nickName;
             Avatar = avatar;
             Country = country;
             Scores = new List<Score>();
-            IdGame = idGame;
-            IdUser = idUser;
+            GameId = idGame;
+            UserId = idUser;
         }
     }
 }

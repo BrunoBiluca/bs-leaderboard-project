@@ -13,7 +13,7 @@ namespace GTSharp.Domain.Api.Controllers
 {
     [ApiController]
     [Route("v1/players")]
-    [Authorize]
+    // [Authorize]
     public class PlayerController : ControllerBase
     {
         [Route("")]

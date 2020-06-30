@@ -7,8 +7,14 @@ namespace GTSharp.Domain.Entities
 {
     public class Game : Entity
     {
+        [Required]
+        [MinLength(3)]
+        [MaxLength(100)]
         public string Title { get; private set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(100)]
         public string Genre { get; private set; }
 
         public DateTime CreatedDate { get; private set; }
@@ -21,6 +27,11 @@ namespace GTSharp.Domain.Entities
             Genre = genre;
             CreatedDate = DateTime.Today;
             Players = new List<Player>();
+        }
+
+        public void AddPlayer(Player player)
+        {
+            Players.Add(player);
         }
     }
 }
