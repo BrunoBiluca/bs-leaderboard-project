@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GTSharp.Domain.Entities
@@ -13,16 +14,16 @@ namespace GTSharp.Domain.Entities
         public string Picture { get; private set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(100)]
+        [MinLength(3), MaxLength(64)]
         public string NickName { get; private set; }
 
         public string Avatar { get; private set; }
 
         [Required]
-        [MinLength(2)]
-        [MaxLength(2)]
+        [MinLength(2), MaxLength(2)]
         public string Country { get; private set; }
+
+        public List<Player> Players { get; private set; }
 
         public User(string email, string name, string picture, string nickName, string avatar, string country)
         {
@@ -32,6 +33,7 @@ namespace GTSharp.Domain.Entities
             NickName = nickName;
             Avatar = avatar;
             Country = country;
+            Players = new List<Player>();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace GTSharp.Domain.Entities
     public class Player : Entity
     {
         [Required]
-        [MinLength(3), MaxLength(100)]
+        [MinLength(3), MaxLength(64)]
         public string NickName { get; private set; }
 
         public string Avatar { get; private set; }

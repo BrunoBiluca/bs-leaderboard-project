@@ -32,8 +32,8 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
             .Requires()
             .IsEmail(Email, "Email", Messages.V_IsNotEmail.ToFormat("Email"))
 
-            .IsBetween(Name.Length0IfNullOrEmpty(), 3, 100, "Name", Messages.V_IsBetween.ToFormat("Name", "3", "100"))
-            .IsBetween(NickName.Length0IfNullOrEmpty(), 3, 256, "NickName", Messages.V_IsBetween.ToFormat("NickName", "3", "256"))
+            .IsBetween(Name.Length0IfNullOrEmpty(), 3, 256, "Name", Messages.V_IsBetween.ToFormat("Name", "3", "256"))
+            .IsBetween(NickName.Length0IfNullOrEmpty(), 3, 64, "NickName", Messages.V_IsBetween.ToFormat("NickName", "3", "64"))
 
             .HasLen(Country, 2, "Country", Messages.V_HasLen.ToFormat("Country", "2"))
 

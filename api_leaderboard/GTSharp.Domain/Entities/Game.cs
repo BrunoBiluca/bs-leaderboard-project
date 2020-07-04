@@ -8,13 +8,11 @@ namespace GTSharp.Domain.Entities
     public class Game : Entity
     {
         [Required]
-        [MinLength(3)]
-        [MaxLength(100)]
+        [MinLength(3), MaxLength(64)]
         public string Title { get; private set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(100)]
+        [MinLength(3), MaxLength(64)]
         public string Genre { get; private set; }
 
         public DateTime CreatedDate { get; private set; }

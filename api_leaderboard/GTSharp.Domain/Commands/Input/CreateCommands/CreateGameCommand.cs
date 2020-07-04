@@ -22,8 +22,8 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
             AddNotifications(new Contract()
             .Requires()
 
-            .IsBetween(Title.Length0IfNullOrEmpty(), 3, 100, "Title", Messages.V_IsBetween.ToFormat("Title", "3", "100"))
-            .IsBetween(Genre.Length0IfNullOrEmpty(), 3, 256, "Genre", Messages.V_IsBetween.ToFormat("Genre", "3", "256"))
+            .IsBetween(Title.Length0IfNullOrEmpty(), 3, 64, "Title", Messages.V_IsBetween.ToFormat("Title", "3", "64"))
+            .IsBetween(Genre.Length0IfNullOrEmpty(), 3, 64, "Genre", Messages.V_IsBetween.ToFormat("Genre", "3", "64"))
             );
         }
     }
