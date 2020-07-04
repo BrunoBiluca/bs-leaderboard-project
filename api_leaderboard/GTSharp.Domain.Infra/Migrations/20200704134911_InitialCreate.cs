@@ -12,9 +12,9 @@ namespace GTSharp.Domain.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 100, nullable: false),
-                    Genre = table.Column<string>(maxLength: 100, nullable: false),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(maxLength: 64, nullable: false),
+                    Genre = table.Column<string>(maxLength: 64, nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -27,11 +27,11 @@ namespace GTSharp.Domain.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     Picture = table.Column<string>(nullable: true),
-                    NickName = table.Column<string>(maxLength: 100, nullable: false),
+                    NickName = table.Column<string>(maxLength: 64, nullable: false),
                     Avatar = table.Column<string>(nullable: true),
                     Country = table.Column<string>(maxLength: 2, nullable: false)
                 },
@@ -45,8 +45,8 @@ namespace GTSharp.Domain.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NickName = table.Column<string>(maxLength: 100, nullable: false),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NickName = table.Column<string>(maxLength: 64, nullable: false),
                     Avatar = table.Column<string>(nullable: true),
                     Country = table.Column<string>(maxLength: 2, nullable: true),
                     UserId = table.Column<int>(nullable: false),
@@ -61,6 +61,12 @@ namespace GTSharp.Domain.Infra.Migrations
                         principalTable: "Game",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Player_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,8 +74,10 @@ namespace GTSharp.Domain.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ScoreJSON = table.Column<string>(nullable: true),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(maxLength: 64, nullable: true),
+                    Stage = table.Column<int>(nullable: true),
+                    Time = table.Column<DateTime>(nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: true),
                     PlayerId = table.Column<int>(nullable: true)
                 },
@@ -90,6 +98,11 @@ namespace GTSharp.Domain.Infra.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Player_UserId",
+                table: "Player",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Score_PlayerId",
                 table: "Score",
                 column: "PlayerId");
@@ -101,13 +114,13 @@ namespace GTSharp.Domain.Infra.Migrations
                 name: "Score");
 
             migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
                 name: "Player");
 
             migrationBuilder.DropTable(
                 name: "Game");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }
