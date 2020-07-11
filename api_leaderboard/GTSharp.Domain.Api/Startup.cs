@@ -49,6 +49,8 @@ namespace GTSharp.Domain.Api
             services.AddTransient<PlayerHandler, PlayerHandler>();
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<GameHandler, GameHandler>();
+            services.AddTransient<IScoreRepository, ScoreRepository>();
+            services.AddTransient<ScoreHandler, ScoreHandler>();
 
             services
               .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

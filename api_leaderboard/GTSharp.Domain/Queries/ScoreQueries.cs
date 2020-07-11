@@ -1,0 +1,14 @@
+using System;
+using System.Linq.Expressions;
+using GTSharp.Domain.Entities;
+
+namespace GTSharp.Domain.Queries
+{
+    public static class ScoreQueries
+    {
+        public static Expression<Func<Score, bool>> ExpById(int id)
+        {
+            return o => o.Id == id;
+        }
+    }
+}

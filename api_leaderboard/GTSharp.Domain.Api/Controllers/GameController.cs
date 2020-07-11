@@ -25,16 +25,6 @@ namespace GTSharp.Domain.Api.Controllers
             return (GenericCommandResult)handler.Handle(command);
         }
 
-
-        [Route("{id:int}")]
-        [HttpGet]
-        public Game GetById([FromServices] DataContext context, int id)
-        {
-            return context.Game.AsNoTracking()
-            .Where(o => o.Id == id).Include(o => o.Players).ToList().FirstOrDefault();
-        }
-
-        [Route("all")]
         [HttpGet]
         public IEnumerable<Game> GetAll([FromServices] DataContext context)
         {
@@ -42,5 +32,14 @@ namespace GTSharp.Domain.Api.Controllers
             .Include(o => o.Players)
                 .ThenInclude(p => p.Scores);
         }
+
+        [Route("{id:int}")]
+        [HttpGet]
+        public Game GetById([FromServices] DataContext context, int id)
+        {
+            return context.Game.AsNoTracking()
+            .Where(o => o.Id == id).Include(o => o.Players).FirstOrDefault();
+        }
+
     }
 }

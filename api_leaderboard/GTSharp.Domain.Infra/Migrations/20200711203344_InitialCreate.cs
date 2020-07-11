@@ -77,9 +77,10 @@ namespace GTSharp.Domain.Infra.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(maxLength: 64, nullable: true),
                     Stage = table.Column<int>(nullable: true),
+                    Value = table.Column<int>(nullable: true),
                     Time = table.Column<DateTime>(nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: true),
-                    PlayerId = table.Column<int>(nullable: true)
+                    PlayerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +90,7 @@ namespace GTSharp.Domain.Infra.Migrations
                         column: x => x.PlayerId,
                         principalTable: "Player",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

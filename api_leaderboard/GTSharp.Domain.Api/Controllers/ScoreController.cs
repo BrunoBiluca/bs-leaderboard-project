@@ -14,29 +14,28 @@ using Microsoft.EntityFrameworkCore;
 namespace GTSharp.Domain.Api.Controllers
 {
     [ApiController]
-    [Route("v1/players")]
+    [Route("v1/score")]
     // [Authorize]
-    public class PlayerController : ControllerBase
+    public class ScoreController : ControllerBase
     {
         [Route("")]
         [HttpPost]
-        public GenericCommandResult Create([FromBody] CreatePlayerCommand command, [FromServices] PlayerHandler handler)
+        public GenericCommandResult Create([FromBody] CreateScoreCommand command, [FromServices] ScoreHandler handler)
         {
             return (GenericCommandResult)handler.Handle(command);
         }
 
         [HttpGet]
-        public IEnumerable<Player> GetAll([FromServices] DataContext context)
+        public IEnumerable<Score> GetAll([FromServices] DataContext context)
         {
-            return context.Player.AsNoTracking().Include(o => o.Scores);
+            return context.Score.AsNoTracking();
         }
 
         [Route("{id:int}")]
         [HttpGet]
-        public Player GetById([FromServices] DataContext context, int id)
+        public Score GetById([FromServices] DataContext context, int id)
         {
-            return context.Player.AsNoTracking()
-                    .Where(o => o.Id == id).Include(o => o.Scores).FirstOrDefault();
+            return context.Score.AsNoTracking().Where(o => o.Id == id).FirstOrDefault();
         }
 
     }

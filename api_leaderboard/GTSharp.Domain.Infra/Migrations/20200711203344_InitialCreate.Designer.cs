@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GTSharp.Domain.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200704134911_InitialCreate")]
+    [Migration("20200711203344_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,7 +84,7 @@ namespace GTSharp.Domain.Infra.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PlayerId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("Stage")
@@ -96,6 +96,9 @@ namespace GTSharp.Domain.Infra.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT")
                         .HasMaxLength(64);
+
+                    b.Property<int?>("Value")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -158,7 +161,9 @@ namespace GTSharp.Domain.Infra.Migrations
                 {
                     b.HasOne("GTSharp.Domain.Entities.Player", null)
                         .WithMany("Scores")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
