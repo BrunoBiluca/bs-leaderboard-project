@@ -11,11 +11,11 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
         public string NickName { get; set; }
         public string Avatar { get; set; }
         public string Country { get; set; }
-        public int IdUser { get; set; }
-        public int IdGame { get; set; }
+        public int? IdUser { get; set; }
+        public int? IdGame { get; set; }
 
         public CreatePlayerCommand(string nickName, string avatar,
-         string country, int idUser, int idGame)
+         string country, int? idUser, int? idGame)
         {
             NickName = nickName;
             Avatar = avatar;

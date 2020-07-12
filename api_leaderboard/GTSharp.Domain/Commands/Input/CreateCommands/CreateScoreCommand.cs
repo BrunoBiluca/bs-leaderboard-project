@@ -19,9 +19,9 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
 
         public DateTime? CreateDate { get; set; }
 
-        public int PlayerId { get; set; }
+        public int? PlayerId { get; set; }
 
-        public CreateScoreCommand(string title, int? stage, int? value, DateTime? time, int playerId)
+        public CreateScoreCommand(string title, int? stage, int? value, DateTime? time, int? playerId)
         {
             Title = title;
             Stage = stage;

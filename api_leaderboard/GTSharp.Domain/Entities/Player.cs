@@ -19,13 +19,13 @@ namespace GTSharp.Domain.Entities
         public List<Score> Scores { get; private set; }
 
         [ForeignKey("User")]
-        public int UserId { get; private set; }
+        public int? UserId { get; private set; }
 
         [ForeignKey("Game")]
-        public int GameId { get; private set; }
+        public int? GameId { get; private set; }
 
         public Player() { }
-        public Player(string nickName, string avatar, string country, int idUser, int idGame)
+        public Player(string nickName, string avatar, string country, int? idUser, int? idGame)
         {
             NickName = nickName;
             Avatar = avatar;

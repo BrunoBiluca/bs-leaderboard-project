@@ -19,11 +19,11 @@ namespace GTSharp.Domain.Entities
 
 
         [ForeignKey("Player")]
-        public int PlayerId { get; private set; }
+        public int? PlayerId { get; private set; }
 
         public Score() { }
 
-        public Score(string title, int? stage, int? value, DateTime? time, int playerId)
+        public Score(string title, int? stage, int? value, DateTime? time, int? playerId)
         {
             Title = title;
             Stage = stage;
