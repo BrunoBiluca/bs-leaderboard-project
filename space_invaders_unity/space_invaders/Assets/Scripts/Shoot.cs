@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour {
+public class Shoot : MonoBehaviour, IDamageable {
 
     float shootSpeed;
     float shootDirection;
@@ -27,11 +27,14 @@ public class Shoot : MonoBehaviour {
         this.onShootDestroy = onShootDestroy;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        var damageableSystem = other.GetComponent<IDamageable>();
+    private void OnCollisionEnter(Collision collision) {
+
+        var damageableSystem = collision.gameObject.GetComponent<IDamageable>();
+        Debug.Log("coli " + collision.gameObject.name);
 
         if(damageableSystem != null) {
-            if(damageableSystem.GetType() == shootTarget) {
+            if(damageableSystem.GetType() == shootTarget
+                || damageableSystem.GetType() == typeof(Shoot)) {
                 damageableSystem.Damage();
                 Destroy(gameObject);
             }
@@ -42,4 +45,7 @@ public class Shoot : MonoBehaviour {
         onShootDestroy();
     }
 
+    public void Damage() {
+        Destroy(gameObject);
+    }
 }

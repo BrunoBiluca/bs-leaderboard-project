@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyMoviment : MonoBehaviour {
 
-    Vector3 direction;
+    public Vector3 direction;
 
     void Start() {
 
@@ -27,16 +27,9 @@ public class EnemyMoviment : MonoBehaviour {
 
     }
 
-    float changeDirectionInterval = 0f;
+    public float changeDirectionInterval = 0f;
     float movimentInterval = 0f;    
     float shootInterval = 0f;
-
-    private void OnCollisionEnter(Collision collision) {
-        if(changeDirectionInterval >= 2) {
-            changeDirectionInterval = 0;
-            direction = new Vector3(direction.x * -1, 0);
-        }
-    }
 
     void Update() {
         changeDirectionInterval += Time.deltaTime;
