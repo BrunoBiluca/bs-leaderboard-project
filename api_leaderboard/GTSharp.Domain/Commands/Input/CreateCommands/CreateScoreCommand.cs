@@ -36,7 +36,7 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
             .Requires()
 
             .IsBetween(Title.Length0IfNullOrEmpty(), 3, 64, "Title", Messages.V_IsBetween.ToFormat("Title", "3", "64"))
-            .IsNotNull(PlayerId, "IdGame", Messages.V_IsNotNullOrEmpty.ToFormat("PlayerId"))
+            .IsNotNull(PlayerId, "PlayerId", Messages.V_IsNotNullOrEmpty.ToFormat("PlayerId"))
             );
         }
     }
