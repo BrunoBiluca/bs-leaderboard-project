@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable {
 
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log(collision.gameObject.name);
         var other = collision.gameObject.name;
 
         if(other != "left_bound" && other != "right_bound") {
@@ -19,13 +18,18 @@ public class Enemy : MonoBehaviour, IDamageable {
     }
 
     public void Shoot() {
-        var shoot = Instantiate(GameAssets.i.pfShoot, transform.position + new Vector3(0, -.5f, 0), Quaternion.identity);
-        shoot.GetComponent<Shoot>()
-            .Setup<Player>(3f, -1f, () => { });
+        //var shoot = Instantiate(GameAssets.i.pfShoot, transform.position + new Vector3(0, -.5f, 0), Quaternion.identity);
+        //shoot.GetComponent<Shoot>()
+        //    .Setup<Player>(3f, -1f, () => { });
     }
 
     public void Damage() {
         GameManager.i.gameScore.KillEnemy();
+        Instantiate(GameAssets.i.alienExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
+
+        if(FindObjectsOfType<Enemy>().Length == 1) {
+            GameManager.i.GameOver();
+        }
     }
 }

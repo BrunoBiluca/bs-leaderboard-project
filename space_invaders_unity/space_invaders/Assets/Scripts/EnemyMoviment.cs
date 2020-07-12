@@ -9,8 +9,8 @@ public class EnemyMoviment : MonoBehaviour {
 
     void Start() {
 
-        var height = 3;
-        var width = 10;
+        var height = 2;
+        var width = 1;
 
         direction = new Vector3(1, 0);
 

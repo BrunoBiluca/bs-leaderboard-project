@@ -26,4 +26,13 @@ public class GameManager : MonoBehaviour {
         currentScoreText.text = gameScore.ToString();
     }
 
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] Text gameOverScoreNumber;
+    public void GameOver() {
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
+        gameOverScoreNumber.text = gameScore.ToString();
+        // TODO: criar registro de score
+    }
+
 }

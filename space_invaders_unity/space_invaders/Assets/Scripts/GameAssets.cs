@@ -14,5 +14,6 @@ public class GameAssets : MonoBehaviour {
 
     [SerializeField] public GameObject pfShoot;
     [SerializeField] public GameObject[] pfAliens;
+    [SerializeField] public GameObject alienExplosion;
 
 }

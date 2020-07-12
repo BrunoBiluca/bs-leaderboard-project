@@ -28,10 +28,7 @@ public class Shoot : MonoBehaviour, IDamageable {
     }
 
     private void OnCollisionEnter(Collision collision) {
-
         var damageableSystem = collision.gameObject.GetComponent<IDamageable>();
-        Debug.Log("coli " + collision.gameObject.name);
-
         if(damageableSystem != null) {
             if(damageableSystem.GetType() == shootTarget
                 || damageableSystem.GetType() == typeof(Shoot)) {
