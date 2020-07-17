@@ -1,0 +1,12 @@
+--------------------------------------------------------
+API LeaderBoard [1.0.1]
+
+- First Commit
+Data Base - In memory
+Commands - Create/Get (User and Player)
+--------------------------------------------------------
+API LeaderBoard [1.0.0]
+
+- First Commit
+Data Base - In memory
+Commands - Create/Get Player
