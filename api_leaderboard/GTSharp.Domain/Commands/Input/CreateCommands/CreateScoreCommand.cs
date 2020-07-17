@@ -10,18 +10,14 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
     {
 
         public string Title { get; set; }
-
         public int? Stage { get; set; }
-
         public int? Value { get; set; }
-
         public DateTime? Time { get; set; }
-
         public DateTime? CreateDate { get; set; }
-
         public int? PlayerId { get; set; }
+        public int? GameId { get; set; }
 
-        public CreateScoreCommand(string title, int? stage, int? value, DateTime? time, int? playerId)
+        public CreateScoreCommand(string title, int? stage, int? value, DateTime? time, int? playerId, int? gameId)
         {
             Title = title;
             Stage = stage;
@@ -29,7 +25,9 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
             Time = time;
             CreateDate = DateTime.Now;
             PlayerId = playerId;
+            GameId = gameId;
         }
+
         public void Validate()
         {
             AddNotifications(new Contract()
@@ -37,6 +35,7 @@ namespace GTSharp.Domain.Commands.Input.CreateCommand
 
             .IsBetween(Title.Length0IfNullOrEmpty(), 3, 64, "Title", Messages.V_IsBetween.ToFormat("Title", "3", "64"))
             .IsNotNull(PlayerId, "PlayerId", Messages.V_IsNotNullOrEmpty.ToFormat("PlayerId"))
+            .IsNotNull(GameId, "GameId", Messages.V_IsNotNullOrEmpty.ToFormat("GameId"))
             );
         }
     }

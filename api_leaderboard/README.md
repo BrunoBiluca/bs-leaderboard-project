@@ -16,5 +16,5 @@ dotnet build .\APIASPNETCoreCQRSEFCore.sln
 - Execution
 ```sh
 cd .\GTSharp.Domain.Api\
-dotnet run watch
+dotnet watch run 
 ```

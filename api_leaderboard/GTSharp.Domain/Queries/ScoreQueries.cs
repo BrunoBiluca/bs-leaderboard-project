@@ -10,5 +10,11 @@ namespace GTSharp.Domain.Queries
         {
             return o => o.Id == id;
         }
+
+        public static Expression<Func<Score, bool>> ExpByTopRanking(int idGame, int count)
+        {
+            // return (o => o.GameId == idGame);
+            return null;
+        }
     }
 }

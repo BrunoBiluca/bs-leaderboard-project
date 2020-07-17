@@ -7,9 +7,9 @@ namespace GTSharp.Domain.Tests.CommandTests
     [TestClass]
     public class CreateScoreCommandTest
     {
-        private readonly CreateScoreCommand _validCommand = new CreateScoreCommand("Fase 1", 1, 30, null, 1);
-        private readonly CreateScoreCommand _invalidCommand = new CreateScoreCommand("F1", -1, -2, null, 1);
-        private readonly CreateScoreCommand _nullCommand = new CreateScoreCommand(null, null, null, null, null);
+        private readonly CreateScoreCommand _validCommand = new CreateScoreCommand("Fase 1", 1, 30, null, 1, 1);
+        private readonly CreateScoreCommand _invalidCommand = new CreateScoreCommand("F1", -1, -2, null, 1, 1);
+        private readonly CreateScoreCommand _nullCommand = new CreateScoreCommand(null, null, null, null, null, null);
 
         public CreateScoreCommandTest()
         {

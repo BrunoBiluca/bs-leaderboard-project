@@ -27,7 +27,7 @@ namespace GTSharp.Domain.Entities
                 return new GenericCommandResult(false, Messages.Ex_ExceptionGeneric, command.Notifications);
 
             //Gera Score
-            var Score = new Score(command.Title, command.Stage, command.Value, command.CreateDate, command.PlayerId);
+            var Score = new Score(command.Title, command.Stage, command.Value, command.CreateDate, command.PlayerId, command.GameId);
 
             //Salva no banco
             _repository.Create(Score);
