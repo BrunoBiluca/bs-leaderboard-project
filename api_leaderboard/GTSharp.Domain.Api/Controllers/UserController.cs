@@ -39,7 +39,10 @@ namespace GTSharp.Domain.Api.Controllers
         [HttpGet]
         public User GetById([FromServices] DataContext context, int id)
         {
-            return context.User.AsNoTracking().Where(o => o.Id == id).ToList().FirstOrDefault();
+            return context.User.AsNoTracking()
+                .Where(o => o.Id == id)
+                .Include(o => o.Players)
+                .FirstOrDefault();
         }
 
     }

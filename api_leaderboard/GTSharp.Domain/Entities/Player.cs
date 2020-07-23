@@ -24,7 +24,7 @@ namespace GTSharp.Domain.Entities
         [ForeignKey("Game")]
         public int? GameId { get; private set; }
 
-        public Player() { }
+        public Player() {}
         public Player(string nickName, string avatar, string country, int? idUser, int? idGame)
         {
             NickName = nickName;

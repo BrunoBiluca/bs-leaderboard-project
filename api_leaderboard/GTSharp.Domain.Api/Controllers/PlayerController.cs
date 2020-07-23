@@ -28,7 +28,7 @@ namespace GTSharp.Domain.Api.Controllers
         [HttpGet]
         public IEnumerable<Player> GetAll([FromServices] DataContext context)
         {
-            return context.Player.AsNoTracking().Include(o => o.Scores);
+            return context.Player.AsNoTracking().Include(o => o.Scores).ToList();
         }
 
         [Route("{id:int}")]
