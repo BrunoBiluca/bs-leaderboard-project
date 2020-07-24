@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GTSharp.Domain.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200711203344_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200723235151_Pack1Initial")]
+    partial class Pack1Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace GTSharp.Domain.Infra.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(2);
 
-                    b.Property<int>("GameId")
+                    b.Property<int?>("GameId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("NickName")
@@ -63,7 +63,7 @@ namespace GTSharp.Domain.Infra.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(64);
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -84,7 +84,10 @@ namespace GTSharp.Domain.Infra.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int?>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PlayerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("Stage")
@@ -146,24 +149,18 @@ namespace GTSharp.Domain.Infra.Migrations
                 {
                     b.HasOne("GTSharp.Domain.Entities.Game", null)
                         .WithMany("Players")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GameId");
 
                     b.HasOne("GTSharp.Domain.Entities.User", null)
                         .WithMany("Players")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GTSharp.Domain.Entities.Score", b =>
                 {
                     b.HasOne("GTSharp.Domain.Entities.Player", null)
                         .WithMany("Scores")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlayerId");
                 });
 #pragma warning restore 612, 618
         }

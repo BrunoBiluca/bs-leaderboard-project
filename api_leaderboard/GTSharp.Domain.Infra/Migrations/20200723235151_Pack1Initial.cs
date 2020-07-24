@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GTSharp.Domain.Infra.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Pack1Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,8 +49,8 @@ namespace GTSharp.Domain.Infra.Migrations
                     NickName = table.Column<string>(maxLength: 64, nullable: false),
                     Avatar = table.Column<string>(nullable: true),
                     Country = table.Column<string>(maxLength: 2, nullable: true),
-                    UserId = table.Column<int>(nullable: false),
-                    GameId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: true),
+                    GameId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,13 +60,13 @@ namespace GTSharp.Domain.Infra.Migrations
                         column: x => x.GameId,
                         principalTable: "Game",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Player_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,7 +80,8 @@ namespace GTSharp.Domain.Infra.Migrations
                     Value = table.Column<int>(nullable: true),
                     Time = table.Column<DateTime>(nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: true),
-                    PlayerId = table.Column<int>(nullable: false)
+                    PlayerId = table.Column<int>(nullable: true),
+                    GameId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,7 +91,7 @@ namespace GTSharp.Domain.Infra.Migrations
                         column: x => x.PlayerId,
                         principalTable: "Player",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

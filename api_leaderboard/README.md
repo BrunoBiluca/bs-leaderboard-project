@@ -6,6 +6,10 @@ EntityFrameworkCore 3.1.2
 SQLite
 
 ## Compilation/Execution
+- Dependencies
+```sh
+dotnet tool install --global dotnet-ef
+```
 
 - Compilation
 ```sh
