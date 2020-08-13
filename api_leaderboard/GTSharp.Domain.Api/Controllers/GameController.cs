@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GTSharp.Domain.Api.Controllers
 {
     [ApiController]
-    [Route("v1/game")]
+    [Route("v1/games")]
     // [Authorize]
     public class GameController : ControllerBase
     {

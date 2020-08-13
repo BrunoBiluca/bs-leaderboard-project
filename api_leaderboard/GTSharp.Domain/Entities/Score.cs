@@ -8,8 +8,9 @@ namespace GTSharp.Domain.Entities
     {
         [MinLength(3), MaxLength(64)]
         public string Title { get; private set; }
-        //TODO: string / required
-        public int? Stage { get; private set; }
+
+        [MinLength(1), MaxLength(64)]
+        public string Stage { get; private set; }
 
         public int? Value { get; private set; }
 
@@ -17,17 +18,15 @@ namespace GTSharp.Domain.Entities
 
         public DateTime? CreateDate { get; private set; }
 
-        //TODO: Player sem null
         [ForeignKey("Player")]
         public int? PlayerId { get; private set; }
 
-        //TODO: Game sem null
         [ForeignKey("Game")]
         public int? GameId { get; private set; }
 
         public Score() { }
 
-        public Score(string title, int? stage, int? value, DateTime? time, int? playerId, int? gameId)
+        public Score(string title, string stage, int? value, DateTime? time, int? playerId, int? gameId)
         {
             Title = title;
             Stage = stage;
