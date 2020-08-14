@@ -79,7 +79,7 @@ namespace GTSharp.Domain.Api
                 app.UseDeveloperExceptionPage();
 
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseSwagger();
             app.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", "LeaderBord Api V1"));
